@@ -9,7 +9,7 @@ importCSV(){ //NOTE: home of the LOOP and the function to call all other fuction
 }
 
 getCSV(){ //NOTE: gets the csv and creates and object out of that shit
-	var spreadsheet = SpreadsheetApp.open();//TODO: needs the name of the csv file
+	var spreadsheet = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/1TfPQzfaMRbf5kgKbeS-PDnvJs12Pxa1uTHUdhahK7t0/edit');//TODO: Url of CSV.  Add a variable that is set by user input.
 	var sheet = spreadsheet.getSheets()[0];
 	var range = sheet.getRange();//TODO: this needs a range that will be the range of the most recent data on the csv file
 }
