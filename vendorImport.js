@@ -2,7 +2,7 @@
 
 
 function importCSV(){ //NOTE: home of the LOOP and the function to call all other fuctions
-
+	var csvrange = getCSV(); //NOTE: calls getCSV and returns the range assigning it to csvrange
 	for (rows in range) do{ //TODO: place holder for correct loop
 
 	};
@@ -11,8 +11,8 @@ function importCSV(){ //NOTE: home of the LOOP and the function to call all othe
 function getCSV(){ //NOTE: gets the csv and creates and object out of that shit
 	var spreadsheet = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/1TfPQzfaMRbf5kgKbeS-PDnvJs12Pxa1uTHUdhahK7t0/edit');//TODO: Url of CSV.  Add a variable that is set by user input.
 	var sheet = spreadsheet.getSheets()[0];
-	var range = sheet.getRange(A1,AB1625);//TODO: this needs a range that will be the range of the most recent data on the csv file
-	Browser.msgBox(range.getValue());
+	var range = sheet.getRange(2,1,1625,19);//TODO: this needs a range that will be the range of the most recent data on the csv file
+	return(range); //NOTE: returns range to importCSV
 }
 
 function importVendor(fullName,email,phone,address,zone,state){ //NOTE: function for writing new row
