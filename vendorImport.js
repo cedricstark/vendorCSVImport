@@ -3,8 +3,15 @@
 
 function importCSV(){ //NOTE: home of the LOOP and the function to call all other fuctions
 	var csvrange = getCSV(); //NOTE: calls getCSV and returns the range assigning it to csvrange
-	for (rows in range) do{ //TODO: place holder for correct loop
+	var csvrows = csvrange.getNumRows();
+	var values = range.getValues();
 
+	for (var i = 0; i <= csvrows; i++) { //TODO:test loop
+		var row = i
+		var vendorinfo = buildArray(values,row);
+
+
+		}
 	};
 }
 
@@ -12,6 +19,7 @@ function getCSV(){ //NOTE: gets the csv and creates and object out of that shit
 	var spreadsheet = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/1TfPQzfaMRbf5kgKbeS-PDnvJs12Pxa1uTHUdhahK7t0/edit');//TODO: Url of CSV.  Add a variable that is set by user input.
 	var sheet = spreadsheet.getSheets()[0];
 	var range = sheet.getRange(2,1,1625,19);//TODO: this needs a range that will be the range of the most recent data on the csv file
+
 	return(range); //NOTE: returns range to importCSV
 }
 
@@ -24,6 +32,7 @@ function importVendor(fullName,email,phone,address,zone,state){ //NOTE: function
 
 function autoReply(fullName, email){ //NOTE: emails the applicant with a predefined email that uses variables from the csv to customize that shit
 	var template = HtmlService.createTemplateFromFile("replyTemplate"); //NOTE: assigns the html template as the variable template
+
 	MailApp.sendEmail(email,
 										"Sentry Field Services: Initial Vendor Packet",
 										"",
@@ -34,8 +43,15 @@ function autoReply(fullName, email){ //NOTE: emails the applicant with a predefi
 
 }
 
-function buildArray(){ //NOTE: takes the current row and turns it into variables and returns the values
-
+function buildArray(values,row){ //NOTE: takes the current row and turns it into variables and returns the values
+	var firstName =
+	var lastName =
+	var fullName = firstName + " " + lastName
+	var email =
+	var phone =
+	var address =
+	var state =
+	return[fullName,email,phone,address,state];
 }
 
 function abbreviateState(state){ //NOTE: converts state to abbriviation and returns the value
