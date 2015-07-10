@@ -1,27 +1,28 @@
 //Google App Script for taking a csv file and import it into a master list
 
 
-importCSV(){ //NOTE: home of the LOOP and the function to call all other fuctions
+function importCSV(){ //NOTE: home of the LOOP and the function to call all other fuctions
 
 	for (rows in range) do{ //TODO: place holder for correct loop
 
 	};
 }
 
-getCSV(){ //NOTE: gets the csv and creates and object out of that shit
+function getCSV(){ //NOTE: gets the csv and creates and object out of that shit
 	var spreadsheet = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/1TfPQzfaMRbf5kgKbeS-PDnvJs12Pxa1uTHUdhahK7t0/edit');//TODO: Url of CSV.  Add a variable that is set by user input.
 	var sheet = spreadsheet.getSheets()[0];
 	var range = sheet.getRange(A1,AB1625);//TODO: this needs a range that will be the range of the most recent data on the csv file
+	Browser.msgBox(range.getValue());
 }
 
-importVendor(fullName,email,phone,address,zone,state){ //NOTE: function for writing new row
+function importVendor(fullName,email,phone,address,zone,state){ //NOTE: function for writing new row
 	var ss = SpreadsheetApp.getActiveSpreadsheet();
 	var sheet = ss.getSheets()[0]; //TODO: this selects the sheet being written to.  I believe the 0 indicates the sheet and that it can be replaced with a name ie. the abState
 
 	sheet.appendRow([fullName,email,phone,address,zone]); //NOTE: writes variables to next empty row
 }
 
-autoReply(fullName, email){ //NOTE: emails the applicant with a predefined email that uses variables from the csv to customize that shit
+function autoReply(fullName, email){ //NOTE: emails the applicant with a predefined email that uses variables from the csv to customize that shit
 	var template = HtmlService.createTemplateFromFile("replyTemplate"); //NOTE: assigns the html template as the variable template
 	MailApp.sendEmail(email,
 										"Sentry Field Services: Initial Vendor Packet",
@@ -33,11 +34,11 @@ autoReply(fullName, email){ //NOTE: emails the applicant with a predefined email
 
 }
 
-buildArray(){ //NOTE: takes the current row and turns it into variables and returns the values
+function buildArray(){ //NOTE: takes the current row and turns it into variables and returns the values
 
 }
 
-abbreviateState(state){ //NOTE: converts state to abbriviation and returns the value
+function abbreviateState(state){ //NOTE: converts state to abbriviation and returns the value
 	switch(state) {
 		case 'Alabama':
 			abState = 'AL';
