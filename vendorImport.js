@@ -6,12 +6,12 @@ function importCSV(){ //NOTE: home of the LOOP and the function to call all othe
 	var csvrows = csvrange.getNumRows();
 	var values = range.getValues();
 
-	for (var i = 0; i <= csvrows; i++) { //TODO:test loop
+	for (var i = 1; i <= csvrows; i++) { //TODO:test loop
 		var row = i
 		var vendorinfo = buildArray(values,row);
 
 
-		}
+
 	};
 }
 
@@ -44,14 +44,17 @@ function autoReply(fullName, email){ //NOTE: emails the applicant with a predefi
 }
 
 function buildArray(values,row){ //NOTE: takes the current row and turns it into variables and returns the values
-	var firstName =
-	var lastName =
+	var firstName = values[row][0]
+	var lastName = values[row][1]
 	var fullName = firstName + " " + lastName
-	var email =
-	var phone =
-	var address =
-	var state =
-	return[fullName,email,phone,address,state];
+	var email = values[row][10]
+	var phone = values[row][9]
+	var address = values[row][3] + " " + values[row][4] + " " + values[row][5]
+	var state = values[row][6]
+	var zip = values[row][7]
+
+	address = address + ", " + abbreviateState(state) + " " + zip
+	return[fullName,email,phone,address,state,zip];
 }
 
 function abbreviateState(state){ //NOTE: converts state to abbriviation and returns the value
