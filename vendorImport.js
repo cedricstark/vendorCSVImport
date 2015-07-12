@@ -15,8 +15,9 @@ function importCSV(){ //NOTE: home of the LOOP and the function to call all othe
 		var address = vendorinfo[3];
 		var state = vendorinfo[4];
 		var zip = vendorinfo[5];
+		var zone = zoneFinder(zip);
 
-
+		importVendor(fullName,email,phone,address,state,zip,zone);
 	};
 }
 
