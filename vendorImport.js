@@ -7,7 +7,7 @@ function importCSV(){ //NOTE: home of the LOOP and the function to call all othe
 	var values = csvrange.getValues();
 	var newrows = checkRows(csvrows);
 
-	for (var i = 1; i <= newrows; i++) { //TODO:test loop
+	for (var i = 1; i < newrows; i++) { //TODO:test loop
 		var row = i
 		var vendorinfo = buildArray(values,row);
 		var fullName = vendorinfo[0];
@@ -243,14 +243,14 @@ function zoneFinder(zip){ //FIXME: NOT WORKING JUST GIVING THE ZIP CODE???
 	var rows = range.getNumRows();
 	var regionvalues = range.getValues();
 
-	for (var i = 1; i <= rows; i++){
+	for (var i = 0; i < rows; i++){
 		var row = i;
 		var code = regionvalues[row][0]; //FIXME: need to check for null values
 		var zone = regionvalues[row][1];
 
-		if (code == zip){
-			return(code);
-		}
+		if (zip == code){
+			return(zone);
+		};
 	};
 	return(zip);
 }
