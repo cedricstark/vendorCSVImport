@@ -4,7 +4,7 @@
 function importCSV(){ //NOTE: home of the LOOP and the function to call all other fuctions
 	var csvrange = getCSV(); //NOTE: calls getCSV and returns the range assigning it to csvrange
 	var csvrows = csvrange.getNumRows();
-	var values = range.getValues();
+	var values = csvrange.getValues();
 	var newrows = checkRows(csvrows);
 
 	for (var i = 1; i <= newrows; i++) { //TODO:test loop
@@ -18,7 +18,7 @@ function importCSV(){ //NOTE: home of the LOOP and the function to call all othe
 		var zip = vendorinfo[5];
 		var zone = zoneFinder(zip);
 
-		importVendor(fullName,email,phone,address,state,zip,zone);
+		importVendor(fullName,email,phone,address,zone,state);
 	};
 }
 
@@ -222,7 +222,6 @@ function abbreviateState(state){ //NOTE: converts state to abbriviation and retu
 			abState = 'DC';
 			break;
 	};
-	}
 	return(abState);
 }
 
@@ -237,7 +236,7 @@ function checkRows(csvrows){ //NOTE: checks history to only pull rows added sinc
 	return(newrows); //NOTE: returns newrows to importCSV
 }
 
-function zoneFinder(zip){ //NOTE: searches regions for zip code that matches vendors zip and returns the zone -- if no match is found it returns the zip
+function zoneFinder(zip){ //FIXME: NOT WORKING JUST GIVING THE ZIP CODE???
 	var ss = SpreadsheetApp.getActiveSpreadsheet();
 	var sheet = ss.getSheetByName("regions");
 	var range = sheet.getDataRange();
@@ -246,7 +245,7 @@ function zoneFinder(zip){ //NOTE: searches regions for zip code that matches ven
 
 	for (var i = 1; i <= rows; i++){
 		var row = i;
-		var code = regionvalues[row][0];
+		var code = regionvalues[row][0]; //FIXME: need to check for null values
 		var zone = regionvalues[row][1];
 
 		if (code == zip){
