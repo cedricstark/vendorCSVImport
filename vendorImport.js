@@ -5,8 +5,9 @@ function importCSV(){ //NOTE: home of the LOOP and the function to call all othe
 	var csvrange = getCSV(); //NOTE: calls getCSV and returns the range assigning it to csvrange
 	var csvrows = csvrange.getNumRows();
 	var values = range.getValues();
+	var newrows = checkRows(csvrows);
 
-	for (var i = 1; i <= csvrows; i++) { //TODO:test loop
+	for (var i = 1; i <= newrows; i++) { //TODO:test loop
 		var row = i
 		var vendorinfo = buildArray(values,row);
 		var fullName = vendorinfo[0];
@@ -31,7 +32,7 @@ function getCSV(){ //NOTE: gets the csv and creates and object out of that shit
 
 function importVendor(fullName,email,phone,address,zone,state){ //NOTE: function for writing new row
 	var ss = SpreadsheetApp.getActiveSpreadsheet();
-	var sheet = ss.getSheets()[0]; //TODO: this selects the sheet being written to.  I believe the 0 indicates the sheet and that it can be replaced with a name ie. the abState
+	var sheet = ss.getSheetByName(state); //NOTE: Uses state to select the associated sheet
 
 	sheet.appendRow([fullName,email,phone,address,zone]); //NOTE: writes variables to next empty row
 }
@@ -222,4 +223,19 @@ function abbreviateState(state){ //NOTE: converts state to abbriviation and retu
 	};
 	}
 	return(abState);
+}
+
+function checkrows(csvrows){ //NOTE: checks history to only pull rows added since the last import
+	var ss = SpreadsheetApp.getActiveSpreadsheet();
+	var sheet = ss.getSheetByName("history");
+	var range = sheet.getRange("A1");
+	var oldrows = range.getValue();
+	var newrows = csvrows - oldrows;
+
+	range.setValue(csvrows);
+	return(newrows); //NOTE: returns newrows to importCSV
+}
+
+function zoneFinder(zip){
+
 }
