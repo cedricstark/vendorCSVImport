@@ -232,7 +232,7 @@ function checkRows(csvrows){ //NOTE: checks history to only pull rows added sinc
 	var oldrows = range.getValue();
 	var newrows = csvrows - oldrows;
 
-	range.setValue(csvrows);
+	range.setValue(csvrows - 1);//NOTE: -1 accounts for possition in the array
 	return(newrows); //NOTE: returns newrows to importCSV
 }
 
