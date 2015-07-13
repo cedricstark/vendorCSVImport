@@ -236,6 +236,21 @@ function checkRows(csvrows){ //NOTE: checks history to only pull rows added sinc
 	return(newrows); //NOTE: returns newrows to importCSV
 }
 
-function zoneFinder(zip){
+function zoneFinder(zip){ //NOTE: searches regions for zip code that matches vendors zip and returns the zone -- if no match is found it returns the zip
+	var ss = SpreadsheetApp.getActiveSpreadsheet();
+	var sheet = ss.getSheetByName("regions");
+	var range = sheet.getDataRange();
+	var rows = range.getNumRows();
+	var regionvalues = range.getValues();
 
+	for (var i = 1; i <= rows; i++){
+		var row = i;
+		var code = regionvalues[row][0];
+		var zone = regionvalues[row][1];
+
+		if (code == zip){
+			return(code);
+		}
+	};
+	return(zip);
 }
