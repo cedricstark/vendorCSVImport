@@ -1,5 +1,12 @@
 //Google App Script for taking a csv file and import it into a master list
 
+function onOpen(){
+	var ui = SpreadsheetApp.getUi();
+	ui.createMenu('Script')
+		.addItem('Import Vendors', 'importCSV')
+		.addToUi();
+}
+
 
 function importCSV(){ //NOTE: home of the LOOP and the function to call all other fuctions
 	var csvrange = getCSV(); //NOTE: calls getCSV and returns the range assigning it to csvrange
