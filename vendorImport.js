@@ -35,11 +35,12 @@ function importVendor(fullName,email,phone,address,zone,state){ //NOTE: function
 	var sheet = ss.getSheetByName(state); //NOTE: Uses state to select the associated sheet
 
 	sheet.appendRow([fullName,email,phone,address,zone]); //NOTE: writes variables to next empty row
+	//TODO: reserved for calling autoReply(fullName,email)
 }
 
 function autoReply(fullName, email){ //NOTE: emails the applicant with a predefined email that uses variables from the csv to customize that shit
 	var template = HtmlService.createTemplateFromFile("replyTemplate"); //NOTE: assigns the html template as the variable template
-
+	//TODO: write replyTemplate html
 	MailApp.sendEmail(email,
 										"Sentry Field Services: Initial Vendor Packet",
 										"",
