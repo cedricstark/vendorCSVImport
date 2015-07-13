@@ -25,7 +25,7 @@ function importCSV(){ //NOTE: home of the LOOP and the function to call all othe
 function getCSV(){ //NOTE: gets the csv and creates and object out of that shit
 	var spreadsheet = SpreadsheetApp.openByUrl('https://docs.google.com/spreadsheets/d/1TfPQzfaMRbf5kgKbeS-PDnvJs12Pxa1uTHUdhahK7t0/edit');//TODO: Url of CSV.  Add a variable that is set by user input.
 	var sheet = spreadsheet.getSheets()[0];
-	var range = sheet.getRange(2,1,1625,19);//TODO: this needs a range that will be the range of the most recent data on the csv file
+	var range = sheet.getDataRange();//NOTE: sets range to where data is present
 
 	return(range); //NOTE: returns range to importCSV
 }
@@ -225,7 +225,7 @@ function abbreviateState(state){ //NOTE: converts state to abbriviation and retu
 	return(abState);
 }
 
-function checkrows(csvrows){ //NOTE: checks history to only pull rows added since the last import
+function checkRows(csvrows){ //NOTE: checks history to only pull rows added since the last import
 	var ss = SpreadsheetApp.getActiveSpreadsheet();
 	var sheet = ss.getSheetByName("history");
 	var range = sheet.getRange("A1");
